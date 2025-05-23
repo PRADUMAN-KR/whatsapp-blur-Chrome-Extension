@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Privacy Panel</title>
+  <style>
+    body { font-family: sans-serif; padding: 12px; width: 250px; }
+    label, input { margin-bottom: 8px; display: block; }
+  </style>
+</head>
+<body>
+  <h3>Privacy Controls</h3>
+
+  <label><input type="checkbox" id="enableBlur" /> Enable Blur</label>
+
+  <label>   
+    Blur Intensity: <span id="blurValue">8</span>px
+    <input type="range" id="blurRange" min="0" max="20" value="8" />
+  </label>
+
+  <label><input type="checkbox" id="blurMessages" checked /> Blur Messages</label>
+  <label><input type="checkbox" id="blurNames" /> Blur Contact Names</label>
+
+  <script src="popup.js"></script>
+</body>
+</html>
