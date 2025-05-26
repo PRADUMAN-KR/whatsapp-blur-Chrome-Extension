@@ -2,7 +2,6 @@ function applyBlur(settings) {
     const blurAmount = `${settings.blurIntensity}px`;
     const elements = [];
 
-    // FIXED: CSS selectors need to be combined correctly
     if (settings.blurMessages) {
         elements.push(...document.querySelectorAll(".message-in, .message-out"));
     }
@@ -11,17 +10,15 @@ function applyBlur(settings) {
         elements.push(...document.querySelectorAll("[data-testid='conversation-info-header-chat-title']"));
     }
 
-    // Apply or remove blur based on settings
     elements.forEach(el => {
         el.style.filter = settings.enabled ? `blur(${blurAmount})` : "none";
     });
 }
 
 function initializeBlurFeature() {
-    // Initial blur
+    
     chrome.storage.sync.get(null, applyBlur);
 
-    // Watch DOM mutations (e.g., new messages)
     const observer = new MutationObserver(() => {
         if (chrome?.storage?.sync) {
             chrome.storage.sync.get(null, (settings) => {
@@ -38,7 +35,6 @@ function initializeBlurFeature() {
 
     observer.observe(document.body, { childList: true, subtree: true });
 
-    // Listen for popup-triggered blur refresh
     chrome.runtime.onMessage.addListener((msg) => {
         if (msg.type === 'refreshBlur') {
             chrome.storage.sync.get(null, applyBlur);
@@ -46,7 +42,7 @@ function initializeBlurFeature() {
     });
 }
 
-// Handle WhatsApp internal navigation
+
 let lastUrl = location.href;
 const urlObserver = new MutationObserver(() => {
     const currentUrl = location.href;
@@ -59,5 +55,5 @@ const urlObserver = new MutationObserver(() => {
 });
 urlObserver.observe(document.body, { childList: true, subtree: true });
 
-// ✅ VERY IMPORTANT: Call the main function
+
 initializeBlurFeature();
