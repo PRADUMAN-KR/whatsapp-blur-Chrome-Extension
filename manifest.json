@@ -3,7 +3,7 @@
   "name": "WhatsApp Web Blurrer",
   "version": "1.0",
   "description": "Blur WhatsApp chats with one click. Customizable privacy settings.",
-  "permissions": ["storage", "scripting"],
+  "permissions": ["storage", "scripting", "tabs"],
   "action": {
     "default_popup": "popup.html",
     "default_icon": "icon.png"
@@ -12,7 +12,8 @@
     {
       "matches": ["https://web.whatsapp.com/*"],
       "js": ["content.js"],
-      "css": ["style.css"]
+      "css": ["style.css"],
+      "run_at": "document_idle"
     }
   ],
   "icons": {

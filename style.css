@@ -1,0 +1,3 @@
+.message-in, .message-out, [data-testid='conversation-info-header-chat-title'] {
+  transition: filter 0.3s ease;
+}
